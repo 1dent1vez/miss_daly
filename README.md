@@ -4,6 +4,23 @@ Sitio web bilingüe para una docente de inglés, desarrollado como **proyecto fr
 
 El proyecto reúne la oferta de clases, el perfil profesional y los materiales didácticos en una experiencia responsive en español e inglés. Forma parte de mi portafolio de diseño y desarrollo web.
 
+## Vista previa móvil
+
+<table>
+  <tr>
+    <th>Clases de inglés</th>
+    <th>Perfil profesional</th>
+    <th>Materiales didácticos</th>
+  </tr>
+  <tr>
+    <td><a href="docs/screenshots/mobile-inicio.png"><img src="docs/screenshots/mobile-inicio.png" width="250" alt="Vista móvil de la portada de Miss Daly con su retrato y contacto por WhatsApp"></a></td>
+    <td><a href="docs/screenshots/mobile-perfil.png"><img src="docs/screenshots/mobile-perfil.png" width="250" alt="Vista móvil del perfil profesional de Miss Daly con descarga del CV"></a></td>
+    <td><a href="docs/screenshots/mobile-materiales.png"><img src="docs/screenshots/mobile-materiales.png" width="250" alt="Vista móvil del catálogo de proyectos y materiales didácticos en PDF"></a></td>
+  </tr>
+</table>
+
+Capturas reales del sitio a 390 px de ancho. Haz clic en cada imagen para verla en detalle.
+
 ## Funcionalidades
 
 - Páginas de clases y perfil profesional en español e inglés.
