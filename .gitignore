@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+
+# Respaldos, herramientas internas y propuestas locales
+.historial/
+.impeccable/
+.agents/
+sketches/
+
+# Archivos locales del sistema y registros
+.DS_Store
+Thumbs.db
+*.log

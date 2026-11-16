@@ -1,0 +1,62 @@
+---
+import '@fontsource/instrument-serif/latin-400.css';
+import '@fontsource/instrument-serif/latin-400-italic.css';
+import '@fontsource/roboto/latin-400.css';
+import '@fontsource/roboto/latin-600.css';
+import '../styles/site.css';
+import { routes, type Language, type Page } from '../site';
+
+interface Props {
+  lang: Language;
+  page: Page;
+  title: string;
+  description: string;
+}
+
+const { lang, page, title, description } = Astro.props;
+const es = lang === 'es';
+const alt = es ? 'en' : 'es';
+const urls = routes[lang];
+const canonical = Astro.site && new URL(urls[page], Astro.site);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#70283e" />
+    <title>{title} | Miss Daly</title>
+    {canonical && <link rel="canonical" href={canonical} />}
+    {Astro.site && Object.entries(routes).map(([language, paths]) =>
+      <link rel="alternate" hreflang={language} href={new URL(paths[page], Astro.site)} />
+    )}
+  </head>
+  <body class:list={[`${page}-page`]}>
+    <a class="skip" href="#contenido">{es ? 'Ir al contenido' : 'Skip to content'}</a>
+    <div class="site-masthead">
+    <header class="shell site-header">
+      <a class="wordmark" href={urls.classes}>Miss Daly<span>English Teacher</span></a>
+      <nav aria-label={es ? 'Navegación principal' : 'Main navigation'}>
+        <a href={urls.classes} aria-current={page === 'classes' ? 'page' : undefined}>{es ? 'Clases' : 'Classes'}</a>
+        <a href={urls.profile} aria-current={page === 'profile' ? 'page' : undefined}>{es ? 'Perfil profesional' : 'Professional profile'}</a>
+        <a class="language" href={routes[alt][page]} lang={alt} hreflang={alt}>{es ? 'English' : 'Español'}</a>
+      </nav>
+    </header>
+    </div>
+    <main id="contenido"><slot /></main>
+    <div class="footer-band">
+    <footer class="shell site-footer">
+      <div class="footer-main">
+        <a class="wordmark" href={urls.classes}>Miss Daly<span>English Teacher</span></a>
+        <a href={page === 'classes' ? urls.profile : urls.classes}>
+          {page === 'classes' ? (es ? 'Perfil profesional' : 'Professional profile') : (es ? 'Clases de inglés' : 'English classes')}
+        </a>
+      </div>
+      <p class="footer-credit" lang="es">
+        <span>Hecho por</span>{' '}<a href="https://brilinr.dpdns.org/servicios/landing-page/" target="_blank" rel="noopener noreferrer" lang={lang} aria-label={es ? 'Brilint (se abre en una pestaña nueva)' : 'Brilint (opens in a new tab)'}>Brilint</a>
+      </p>
+    </footer>
+    </div>
+  </body>
+</html>

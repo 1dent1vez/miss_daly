@@ -1,0 +1,51 @@
+---
+import Action from './Action.astro';
+import { portfolio, type Language } from '../site';
+
+interface Props {
+  lang: Language;
+  whatsapp?: string;
+}
+const { lang, whatsapp } = Astro.props;
+const es = lang === 'es';
+---
+<section class="class-hero" aria-labelledby="hero-title">
+  <h1 class="poster-title shell" id="hero-title">
+    {es ? 'Inglés para' : 'English for'} <em>{es ? 'la vida real.' : 'real life.'}</em>
+  </h1>
+  <div class="hero-stage shell">
+    <p class="hero-words" aria-hidden="true">Speak.<span>Listen.</span><span>Connect.</span></p>
+    <figure class="hero-portrait">
+      <div class="portrait-backdrop" aria-hidden="true"></div>
+      <img
+        src={portfolio.portrait}
+        srcset={`${portfolio.portraitSmall} 640w, ${portfolio.portrait} 1122w`}
+        sizes="(max-width: 700px) 21rem, (max-width: 1100px) 25rem, 27rem"
+        alt="Miss Daly"
+        width="1122"
+        height="1402"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </figure>
+    <div class="hero-promise">
+      <p>{es ? 'Tu nivel.' : 'Your level.'}<br />{es ? 'Tus metas.' : 'Your goals.'}<br />{es ? 'Tu inglés.' : 'Your English.'}</p>
+      <span>{es ? 'Diagnóstico, plan personalizado y práctica en contexto.' : 'Placement assessment, a personal learning plan and practice in context.'}</span>
+    </div>
+  </div>
+  <div class="hero-shelf">
+    <div class="hero-shelf-inner shell">
+      <div class="hero-shelf-copy">
+        <p class="hero-introduction">{es ? 'Soy Miss Daly. Aprendamos a usarlo.' : 'I’m Miss Daly. Let’s put English into practice.'}</p>
+        <p>{es ? 'Clases personalizadas para estudiantes de 10 a 20 años.' : 'Personalized classes for students aged 10 to 20.'}<br />{es ? 'En línea o presenciales · Materiales incluidos.' : 'Online or in person · Materials included.'}</p>
+      </div>
+      <div class="hero-action">
+        <Action href={whatsapp}>
+          {es ? 'Consultar por WhatsApp' : 'Ask on WhatsApp'}
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </Action>
+        {!whatsapp && <p class="note">{es ? 'Número de contacto por confirmar.' : 'Contact number to be confirmed.'}</p>}
+      </div>
+    </div>
+  </div>
+</section>

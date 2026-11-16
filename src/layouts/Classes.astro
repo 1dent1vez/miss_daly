@@ -1,0 +1,83 @@
+---
+import Site from './Site.astro';
+import Action from '../components/Action.astro';
+import ClassHero from '../components/ClassHero.astro';
+import { publicPhone, type Language } from '../site';
+
+interface Props { lang: Language; }
+const { lang } = Astro.props;
+const es = lang === 'es';
+const message = es
+  ? 'Hola, Miss Daly. Quiero consultar horarios y precios para clases de inglés.'
+  : 'Hi, Miss Daly. I’d like to ask about times and prices for English classes.';
+const whatsapp = publicPhone && `https://wa.me/${publicPhone.slice(1)}?text=${encodeURIComponent(message)}`;
+const action = es ? 'Consultar por WhatsApp' : 'Ask on WhatsApp';
+const formats = es ? [
+  ['Edades', 'De 10 a 20 años'],
+  ['Niveles', 'Básico a intermedio avanzado'],
+  ['Modalidad', 'En línea o presencial'],
+  ['Formato', 'Individual o en grupos reducidos'],
+] : [
+  ['Ages', '10 to 20 years old'],
+  ['Levels', 'Beginner to upper intermediate'],
+  ['Location', 'Online or in person'],
+  ['Format', 'One-to-one or small groups'],
+];
+const steps = es ? [
+  ['Diagnóstico', 'Conozco tu nivel, tu experiencia y lo que quieres lograr con el inglés.'],
+  ['Plan personalizado', 'Diseño actividades que se ajustan a tus metas y al formato de clase que elijas.'],
+  ['Práctica en contexto', 'Trabajamos conversación, escucha, lectura, escritura y pronunciación en situaciones de la vida real. Revisamos la gramática según lo que necesites.'],
+] : [
+  ['Placement assessment', 'I get to know your level, your experience and what you want to achieve in English.'],
+  ['Personal learning plan', 'I design activities around your goals and your chosen class format.'],
+  ['Practice in context', 'We work on speaking, listening, reading, writing and pronunciation through real-life situations. We cover grammar as needed.'],
+];
+const faq = es ? [
+  ['¿Tengo que comprar materiales?', 'Los materiales están incluidos en las clases.'],
+  ['¿Cómo consulto horarios, duración y precios?', 'Podemos revisar disponibilidad por la mañana o por la tarde y acordar el formato. Los precios se comparten por WhatsApp.'],
+  ['¿Dónde se dan las clases presenciales?', 'La dirección exacta se comparte por WhatsApp al coordinar la clase.'],
+  ['¿Cómo se inscribe un menor de edad?', 'Su madre, padre o tutor puede escribir directamente. Si el estudiante inicia el contacto, un adulto confirma la inscripción.'],
+] : [
+  ['Do I need to buy materials?', 'Learning materials are included with the classes.'],
+  ['How can I ask about times, class length and prices?', 'We can discuss morning or afternoon availability and agree on a format. Prices are shared on WhatsApp.'],
+  ['Where are in-person classes held?', 'I share the exact address on WhatsApp when we arrange the class.'],
+  ['How can a student under 18 enroll?', 'A parent or guardian can get in touch directly. If the student messages first, an adult confirms enrollment.'],
+];
+---
+<Site lang={lang} page="classes"
+  title={es ? 'Clases personalizadas de inglés' : 'Personalized English classes'}
+  description={es ? 'Clases de inglés para estudiantes de 10 a 20 años, en línea o presenciales.' : 'Online and in-person English classes for students aged 10 to 20.'}>
+  <ClassHero lang={lang} whatsapp={whatsapp} />
+
+  <section class="shell split-section">
+    <h2>{es ? 'Encuentra tu formato' : 'Find your format'}</h2>
+    <dl class="fact-list">
+      {formats.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}
+    </dl>
+  </section>
+
+  <section class="method">
+    <div class="shell split-section">
+      <h2>{es ? 'Cómo son las clases' : 'How classes work'}</h2>
+      <ol class="steps">
+        {steps.map(([heading, copy], index) => (
+          <li><span aria-hidden="true">{index + 1}.</span><div><h3>{heading}</h3><p>{copy}</p></div></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="shell split-section">
+    <h2>{es ? 'Preguntas frecuentes' : 'Frequently asked questions'}</h2>
+    <div class="faq">
+      {faq.map(([question, answer]) => <details><summary>{question}</summary><p>{answer}</p></details>)}
+    </div>
+  </section>
+
+  {whatsapp && <section class="contact-band">
+    <div class="shell contact-inner">
+      <h2>{es ? '¿Agendamos una clase?' : 'Shall we plan a class?'}</h2>
+      <Action href={whatsapp}>{action}</Action>
+    </div>
+  </section>}
+</Site>
