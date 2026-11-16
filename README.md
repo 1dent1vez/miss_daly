@@ -21,6 +21,21 @@ El proyecto reúne la oferta de clases, el perfil profesional y los materiales d
 
 Capturas reales del sitio a 390 px de ancho. Haz clic en cada imagen para verla en detalle.
 
+## Vista previa desktop
+
+### Clases de inglés
+
+[![Vista de escritorio de la portada de Miss Daly con diseño editorial, retrato y contacto por WhatsApp](docs/screenshots/desktop-inicio.png)](docs/screenshots/desktop-inicio.png)
+
+<details>
+  <summary>Ver perfil profesional en desktop</summary>
+
+[![Vista de escritorio del perfil profesional de Miss Daly con retrato, presentación y descarga del CV](docs/screenshots/desktop-perfil.png)](docs/screenshots/desktop-perfil.png)
+
+</details>
+
+Capturas reales del sitio a 1440 px de ancho. Haz clic en cada imagen para verla en detalle.
+
 ## Funcionalidades
 
 - Páginas de clases y perfil profesional en español e inglés.
