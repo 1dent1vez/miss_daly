@@ -1,14 +1,14 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 import { parse } from 'parse5';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const scratch = join(root, '.impeccable', 'review', 'contact-materials', 'fixtures');
-mkdirSync(scratch, { recursive: true });
+
 const walk = node => [node, ...(node.childNodes ?? []).flatMap(walk)];
 const attr = (node, name) => node.attrs?.find(attribute => attribute.name === name)?.value;
 const routes = ['index.html', 'en/index.html', 'perfil-profesional/index.html', 'en/professional-profile/index.html'];
@@ -24,7 +24,7 @@ for (const fixture of [
   { name: 'configured', phone: '+12025550123', enabled: true },
 ]) {
   test(`contact configuration: ${fixture.name}`, () => {
-    const output = mkdtempSync(join(scratch, `${fixture.name}-`));
+    const output = mkdtempSync(join(tmpdir(), `miss-daly-contact-${fixture.name}-`));
     try {
       const env = { ...process.env, SITE_URL: 'https://miss-daly.example' };
       if (fixture.phone === undefined) delete env.PUBLIC_PHONE;

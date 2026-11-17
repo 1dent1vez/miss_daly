@@ -11,6 +11,17 @@ dist/
 .agents/
 sketches/
 
+# Documentación y metadatos de trabajo locales
+/DESIGN.md
+/DISENO-WEB.md
+/PRODUCT.md
+/public/images/*.webp.json
+AGENTS.md
+CLAUDE.md
+.cursorrules
+.cursor/
+.hermes/
+
 # Archivos locales del sistema y registros
 .DS_Store
 Thumbs.db
